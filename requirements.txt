@@ -2,3 +2,4 @@ mne
 numpy 
 scipy 
 scikit-learn
+torch
