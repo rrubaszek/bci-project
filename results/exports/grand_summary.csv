@@ -1,0 +1,13 @@
+class,channel,band,n_subjects,bp_mean,bp_sem,amp_mean,amp_sem
+Left hand,C3,beta,9,0.1281,0.0205,2.6466,0.2562
+Left hand,C3,mu,9,0.6803,0.1758,2.6466,0.2562
+Left hand,C4,beta,9,0.1335,0.021,2.6322,0.2241
+Left hand,C4,mu,9,0.6299,0.1646,2.6322,0.2241
+Left hand,Cz,beta,9,0.1393,0.0458,3.0522,0.4879
+Left hand,Cz,mu,9,0.7977,0.2178,3.0522,0.4879
+Right hand,C3,beta,9,0.1169,0.0187,2.5734,0.24
+Right hand,C3,mu,9,0.5685,0.1402,2.5734,0.24
+Right hand,C4,beta,9,0.1459,0.0228,2.7087,0.2358
+Right hand,C4,mu,9,0.7448,0.2238,2.7087,0.2358
+Right hand,Cz,beta,9,0.1363,0.0417,3.0395,0.4724
+Right hand,Cz,mu,9,0.7736,0.2086,3.0395,0.4724
