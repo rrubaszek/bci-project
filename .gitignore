@@ -9,7 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
-data/
+data/*
+models/*
 
 # Trained models
 *.pt
