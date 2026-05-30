@@ -51,13 +51,14 @@ def _pick_eeg_channels(raw: mne.io.Raw) -> bool:
 
 
 def _setup_montage_and_types(raw: mne.io.Raw) -> None:
-    channel_types: dict[str, str] = {ch: "eeg" for ch in EEG_CHANNELS}
-    raw.set_channel_types(channel_types)
+    # channel_types: dict[str, str] = {ch: "eeg" for ch in EEG_CHANNELS}
+    # raw.set_channel_types(channel_types)
 
     montage: mne.channels.DigMontage = mne.channels.make_standard_montage(
         EMOTIV_MONTAGE
-    )
+    )  
     raw.set_montage(montage)
+    raw.set_channel_types({ch: "eeg" for ch in raw.ch_names})
 
 
 def _mark_bad_channels(raw: mne.io.Raw, bad_channels: list[str] | None) -> None:

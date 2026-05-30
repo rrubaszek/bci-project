@@ -22,9 +22,22 @@ class BaseExtractor(ABC):
 
     def _compute_band_power(self, epochs: mne.Epochs) -> np.ndarray:
         """Prywatna metoda pomocnicza licząca średnią moc pasm Mu i Beta."""
+        picks = mne.pick_types(epochs.info, eeg=True)
+
+        if len(picks) == 0:
+            # fallback (CRITICAL)
+            picks = list(range(len(epochs.ch_names)))
+
         spectrum = epochs.compute_psd(
-            method="welch", fmin=8.0, fmax=30.0, verbose=False
+            method="welch",
+            fmin=8.0,
+            fmax=30.0,
+            picks=picks,
+            verbose=False
         )
+        # spectrum = epochs.compute_psd(
+        #     method="welch", fmin=8.0, fmax=30.0, verbose=False
+        # )
         psds, freqs = spectrum.get_data(return_freqs=True)
 
         mu_mask: np.ndarray = (freqs >= 8.0) & (freqs <= 12.0)
