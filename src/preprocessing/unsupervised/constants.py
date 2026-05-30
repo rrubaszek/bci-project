@@ -1,0 +1,19 @@
+EMOTIV_MONTAGE = "standard_1020"
+
+
+EEG_CHANNELS: list[str] = [
+    "AF3",
+    "F7",
+    "F3",
+    "FC5",
+    "T7",
+    "P7",
+    "O1",
+    "O2",
+    "P8",
+    "T8",
+    "FC6",
+    "F4",
+    "F8",
+    "AF4",
+]
