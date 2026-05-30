@@ -1,8 +1,0 @@
-mne 
-numpy 
-scipy 
-scikit-learn
-torch
-pandas
-seaborn
-statsmodels

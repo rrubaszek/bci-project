@@ -1,10 +1,11 @@
 [project]
 name = "bci-project"
 version = "0.1.0"
-description = "Add your description here"
+description = "Brain-Computer Interface project using EEG signals with deep learning models"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.11"
 dependencies = [
+    "edfio>=0.4.13",
     "lightgbm>=4.6.0",
     "mne>=1.12.1",
     "numpy>=2.4.4",
@@ -15,4 +16,20 @@ dependencies = [
     "seaborn>=0.13.2",
     "statsmodels>=0.14.6",
     "torch>=2.11.0",
+    "tqdm>=4.66.0",
 ]
+
+[project.scripts]
+bci-convert = "src.preprocessing.convert:main"
+bci-train-deep = "src.models.train_deep:main"
+bci-train-shallow = "src.models.train_shallow:main"
+bci-train-riemann = "src.models.train_riemann:main"
+bci-train-ml = "src.models.train_ml_baselines:main"
+bci-train-conformer = "src.models.train_eeg_conformer:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
