@@ -6,7 +6,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "edfio>=0.4.13",
+    "hmmlearn>=0.3.3",
     "lightgbm>=4.6.0",
+    "matplotlib>=3.10.8",
     "mne>=1.12.1",
     "numpy>=2.4.4",
     "pandas>=3.0.2",
