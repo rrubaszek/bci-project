@@ -10,12 +10,8 @@ wheels/
 .venv
 
 data/bci_comp/*
-data/emotiv/raw/*
-data/emotiv/cleaned/*
 
 !data/bci_comp/.gitkeep
-!data/emotiv/raw/.gitkeep
-!data/emotiv/cleaned/.gitkeep
 
 models/*
 
