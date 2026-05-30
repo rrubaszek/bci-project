@@ -9,7 +9,14 @@ wheels/
 # Virtual environments
 .venv
 
-data/*
+# EEG data
+data/bci_comp/*
+data/emotiv/raw/*
+data/emotiv/cleaned/*
+
+# optionally keep empty folders in repo
+!.gitkeep
+
 models/*
 
 # Trained models
