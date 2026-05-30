@@ -9,13 +9,13 @@ wheels/
 # Virtual environments
 .venv
 
-# EEG data
 data/bci_comp/*
 data/emotiv/raw/*
 data/emotiv/cleaned/*
 
-# optionally keep empty folders in repo
-!.gitkeep
+!data/bci_comp/.gitkeep
+!data/emotiv/raw/.gitkeep
+!data/emotiv/cleaned/.gitkeep
 
 models/*
 
