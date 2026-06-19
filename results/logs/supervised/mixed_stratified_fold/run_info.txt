@@ -1,0 +1,9 @@
+config: mixed_short_no_overlap
+fold_strategy: mixed_stratified
+description: klasyczny StratifiedKFold: każdy fold miesza próbki ze wszystkich serii, krótkie okno 0.4s bez overlapu
+duration: 0.4
+overlap: 0.0
+base_seed: 2000
+n_splits: 4
+fold_results: fold_results.tsv
+summary: summary.tsv

@@ -1,0 +1,3 @@
+config	fold_strategy	training_variant	metric	n_folds	n_models	statistic	p_value	skip_reason
+mixed_short_no_overlap	mixed_stratified	augmented	balanced_accuracy	4	4	8.289473684210527	0.04039307123983006	
+mixed_short_no_overlap	mixed_stratified	not_augmented	balanced_accuracy	4	4	7.736842105263152	0.05177529337349875	

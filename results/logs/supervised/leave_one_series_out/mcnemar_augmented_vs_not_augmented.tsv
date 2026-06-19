@@ -1,0 +1,5 @@
+config	fold_strategy	model	n_folds	n_samples	both_correct	augmented_correct_not_augmented_wrong	augmented_wrong_not_augmented_correct	both_wrong	statistic	p_value	reject	skip_reason
+series_overlap	leave_one_series_out	DeepConvNet	4	348	164	122	15	47	15.0	5.068102951645414e-22	True	
+series_overlap	leave_one_series_out	EEG-Conformer	4	348	240	22	28	58	22.0	0.47988766169832786	False	
+series_overlap	leave_one_series_out	EEGNet	4	348	263	7	11	67	7.0	0.480682373046875	False	
+series_overlap	leave_one_series_out	ShallowConvNet	4	348	216	35	23	74	23.0	0.14800580076020603	False	

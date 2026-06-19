@@ -1,0 +1,8 @@
+config: series_overlap
+fold_strategy: leave_one_series_out
+description: jedna seria odczytu jako fold, sliding window 1.0s z overlapem 0.95s
+duration: 1.0
+overlap: 0.95
+base_seed: 1000
+fold_results: fold_results.tsv
+summary: summary.tsv

@@ -1,0 +1,9 @@
+config	fold_strategy	model	training_variant	folds	epoch_mean	accuracy_mean	accuracy_std	balanced_accuracy_mean	balanced_accuracy_std	mcc_mean	mcc_std
+mixed_short_no_overlap	mixed_stratified	DeepConvNet	augmented	4	5.5000000000	0.4305555556	0.0240562612	0.5520833333	0.0345481749	0.1678746463	0.1020835164
+mixed_short_no_overlap	mixed_stratified	DeepConvNet	not_augmented	4	25.7500000000	0.5000000000	0.0680413817	0.5625000000	0.0360843918	0.1688529010	0.1021322942
+mixed_short_no_overlap	mixed_stratified	EEG-Conformer	augmented	4	32.5000000000	0.6944444444	0.0621129994	0.6875000000	0.0625000000	0.3642766953	0.1219505380
+mixed_short_no_overlap	mixed_stratified	EEG-Conformer	not_augmented	4	59.0000000000	0.7083333333	0.0460642332	0.6875000000	0.0690963498	0.3849513611	0.1284922247
+mixed_short_no_overlap	mixed_stratified	EEGNet	augmented	4	13.0000000000	0.6666666667	0.0785674201	0.6979166667	0.0852640914	0.3819350599	0.1563269331
+mixed_short_no_overlap	mixed_stratified	EEGNet	not_augmented	4	37.2500000000	0.6805555556	0.0991865060	0.7187500000	0.1036445247	0.4267766953	0.1913417162
+mixed_short_no_overlap	mixed_stratified	ShallowConvNet	augmented	4	18.5000000000	0.6805555556	0.0460642332	0.7187500000	0.0454051973	0.4211503625	0.0883106351
+mixed_short_no_overlap	mixed_stratified	ShallowConvNet	not_augmented	4	31.2500000000	0.7222222222	0.0878410461	0.7604166667	0.0683066513	0.5102301246	0.1196020194

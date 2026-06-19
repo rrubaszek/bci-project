@@ -1,0 +1,3 @@
+config	fold_strategy	training_variant	metric	n_folds	n_models	statistic	p_value	skip_reason
+series_overlap	leave_one_series_out	augmented	balanced_accuracy	4	4	3.7692307692307665	0.28748545119250235	
+series_overlap	leave_one_series_out	not_augmented	balanced_accuracy	4	4	11.099999999999994	0.01119724671514405	
