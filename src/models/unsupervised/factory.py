@@ -30,11 +30,11 @@ class ModelFactory:
             return GmmPipeline(
                 extractor=extractor,
                 n_clusters=kwargs.get("n_clusters", 2),
-                pca_components=kwargs.get("pca_components", 3),
+                pca_components=kwargs.get("pca_components", 0.9),
             )
         elif model_type is ModelTypes.HMM:
             return HmmPipeline(
                 extractor=extractor,
                 n_states=kwargs.get("n_states", 2),
-                pca_components=kwargs.get("pca_components", 1),
+                pca_components=kwargs.get("pca_components", 0.9),
             )

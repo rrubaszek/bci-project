@@ -15,3 +15,5 @@ DEFAULT_BCI_DIR = DEFAULT_DATA_DIR / "bci_comp"
 
 DEFAULT_OUT_DIR = PROJECT_ROOT / "results"
 DEFAULT_MODEL_SAVE_DIR = PROJECT_ROOT / "models"
+
+EMOTIV_ANNOTATIONS = PROJECT_ROOT / "data" / "emotiv" / "annotations"

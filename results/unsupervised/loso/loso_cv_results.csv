@@ -1,0 +1,3 @@
+Model,acc_mean,b_acc_mean,f1_mean,mcc_mean
+GMM,0.5714,0.475,0.1429,-0.0369
+HMM,0.5312,0.5,0.2566,-0.023

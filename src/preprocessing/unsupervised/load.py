@@ -1,10 +1,11 @@
+from src.preprocessing.unsupervised.filter import preprocess_eeg
 import mne
-import numpy as np
 
 from src.paths import EMOTIV_CLEANED, EMOTIV_RAW
 
-def load_raw_data():
-    data: list[mne.io.Raw] = []
+
+def load_raw_data() -> dict[str, mne.io.Raw]:
+    data: dict[str, mne.io.Raw] = {}
     for edf_file in EMOTIV_RAW.glob("*.edf"):
         if edf_file.name.endswith(".md.edf"):
             continue
@@ -12,16 +13,23 @@ def load_raw_data():
         print(f"Processing {edf_file.name}")
 
         raw: mne.io.Raw = mne.io.read_raw_edf(edf_file, preload=True)
-        data.append(raw)
-        
+        data[edf_file.name.split(".")[0]] = raw
+
     return data
+
 
 def run():
     raw = load_raw_data()
-    for r in raw:
-        r.filter(4.0, 40.0, fir_design="firwin", skip_by_annotation="edge")
-        r.resample(128)
-        r.save(EMOTIV_CLEANED / f"{r.info['subject_info']['id']}.fif", overwrite=True)
-    
+    for name, r in raw.items():
+        cleaned_r = preprocess_eeg(r, bad_channels=None)
+
+        if cleaned_r is None:
+            raise ValueError("Nie udało się przetworzyć danych")
+
+        cleaned_r.resample(128)
+        cleaned_r.save(EMOTIV_CLEANED / f"{name}.fif", overwrite=True)
+        print(f"Pomyślnie przetworzono i zapisano: {name}")
+
+
 if __name__ == "__main__":
     run()

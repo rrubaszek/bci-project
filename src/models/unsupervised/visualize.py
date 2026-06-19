@@ -1,3 +1,4 @@
+from src.models.unsupervised.loso import get_ground_truth_labels
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -11,10 +12,7 @@ import plotly.express as px
 # MAIN ENTRY
 # -----------------------------
 def create_all_visualizations(
-    predictions: dict,
-    raw_data_list,
-    features,
-    output_dir: Path
+    predictions: dict, raw_data_list, features, output_dir: Path
 ):
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -86,7 +84,7 @@ def _plot_state_timeline_plotly(preds, model_name, out):
     fig.update_layout(
         title=f"{model_name} - State timeline (Plotly)",
         xaxis_title="Time window",
-        yaxis_title="State"
+        yaxis_title="State",
     )
     fig.write_html(out / f"{model_name}_timeline.html")
 
@@ -148,10 +146,7 @@ def _plot_pca_plotly(features, predictions, out):
 
     for model_name, preds in predictions.items():
         fig = px.scatter(
-            x=X[:, 0],
-            y=X[:, 1],
-            color=preds,
-            title=f"PCA embedding - {model_name}"
+            x=X[:, 0], y=X[:, 1], color=preds, title=f"PCA embedding - {model_name}"
         )
         fig.write_html(out / f"{model_name}_pca.html")
 
@@ -201,7 +196,7 @@ def _plot_transition_matrix(preds, out):
     mat = np.zeros((len(states), len(states)))
 
     for i in range(len(preds) - 1):
-        mat[idx[preds[i]], idx[preds[i+1]]] += 1
+        mat[idx[preds[i]], idx[preds[i + 1]]] += 1
 
     mat = mat / (mat.sum(axis=1, keepdims=True) + 1e-8)
 

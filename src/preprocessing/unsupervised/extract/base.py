@@ -21,30 +21,28 @@ class BaseExtractor(ABC):
         )
 
     def _compute_band_power(self, epochs: mne.Epochs) -> np.ndarray:
-        """Prywatna metoda pomocnicza licząca średnią moc pasm Mu i Beta."""
+        """Prywatna metoda pomocnicza licząca RELATYWNĄ moc pasm Mu i Beta."""
         picks = mne.pick_types(epochs.info, eeg=True)
 
         if len(picks) == 0:
-            # fallback (CRITICAL)
             picks = list(range(len(epochs.ch_names)))
 
         spectrum = epochs.compute_psd(
-            method="welch",
-            fmin=8.0,
-            fmax=30.0,
-            picks=picks,
-            verbose=False
+            method="welch", fmin=8.0, fmax=30.0, picks=picks, verbose=False
         )
-        # spectrum = epochs.compute_psd(
-        #     method="welch", fmin=8.0, fmax=30.0, verbose=False
-        # )
         psds, freqs = spectrum.get_data(return_freqs=True)
+
+        total_power = psds.sum(axis=-1, keepdims=True)
+
+        total_power[total_power == 0] = 1.0
 
         mu_mask: np.ndarray = (freqs >= 8.0) & (freqs <= 12.0)
         beta_mask: np.ndarray = (freqs >= 13.0) & (freqs <= 30.0)
 
-        mu_power: np.ndarray = psds[..., mu_mask].mean(axis=-1)
-        beta_power: np.ndarray = psds[..., beta_mask].mean(axis=-1)
+        mu_power: np.ndarray = psds[..., mu_mask].sum(axis=-1) / total_power.squeeze(-1)
+        beta_power: np.ndarray = psds[..., beta_mask].sum(
+            axis=-1
+        ) / total_power.squeeze(-1)
 
         return np.hstack((mu_power, beta_power))
 
