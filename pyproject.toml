@@ -20,6 +20,7 @@ dependencies = [
     "statsmodels>=0.14.6",
     "torch>=2.11.0",
     "tqdm>=4.66.0",
+    "windows-curses>=2.4.2",
 ]
 
 [project.scripts]
@@ -29,6 +30,7 @@ bci-train-shallow = "src.models.train_shallow:main"
 bci-train-riemann = "src.models.train_riemann:main"
 bci-train-ml = "src.models.train_ml_baselines:main"
 bci-train-conformer = "src.models.train_eeg_conformer:main"
+bci-supervised-stats = "src.models.supervised.statistical_tests:cli_entry_point"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]

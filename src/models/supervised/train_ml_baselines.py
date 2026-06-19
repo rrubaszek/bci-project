@@ -48,6 +48,22 @@ def discover_files(data_dir: Path):
     return dict(train_files), dict(eval_files)
 
 
+def discover_files_edf(data_dir: Path):
+    pattern = re.compile(r"^B(\d{2})\d{2}[TE]\.edf$", re.IGNORECASE)
+    train_files: dict = defaultdict(list)
+    eval_files: dict = defaultdict(list)
+
+    for f in sorted(data_dir.glob("*.edf")):
+        m = pattern.match(f.name)
+        if not m: continue
+        subj = m.group(1)
+        if f.stem[-1].upper() == "T":
+            train_files[subj].append(f)
+        else:
+            eval_files[subj].append(f)
+    return dict(train_files), dict(eval_files)
+
+
 def load_gdf(path: Path):
     try:
         raw = mne.io.read_raw_gdf(str(path), preload=True, eog=[])
@@ -103,10 +119,17 @@ def load_subject(train_paths, eval_paths, subj_id):
 # ──────────────────────────────────────────────────────────────────────────────
 def main(args):
     data_dir = Path(args.data_dir)
-    train_files, eval_files = discover_files(data_dir)
+
+    if args.emotive:
+        train_files, eval_files = discover_files_edf(data_dir)
+    else:
+        train_files, eval_files = discover_files(data_dir)
+
     all_subjects = sorted(set(train_files) | set(eval_files))
 
     if not all_subjects: raise SystemExit(f"Brak plików w {data_dir}")
+
+
 
     # Definicja naszych 4 modeli klasycznych do przetestowania
     # Używamy CSP (z log-wariancją) jako ekstraktora cech dla wszystkich modeli
@@ -181,7 +204,8 @@ def main(args):
 def parse_args():
     """Parse command-line arguments"""
     parser = argparse.ArgumentParser(description="Train ML baseline models on BCI-IV 2b dataset")
-    parser.add_argument("--data-dir", default="./data", help="Path to data directory")
+    parser.add_argument("--data-dir", default="./data/emotiv/cleaned", help="Path to data directory")
+    parser.add_argument("--emotive", default=True, help="Flag for dataset selection")
     return parser.parse_args()
 
 
